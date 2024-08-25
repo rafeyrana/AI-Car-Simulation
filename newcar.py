@@ -54,3 +54,19 @@ class Car:
     def draw(self, screen):
         screen.blit(self.rotated_sprite, self.position) # Draw Sprite
         self.draw_radar(screen) #OPTIONAL FOR SENSORS
+
+    def draw_radar(self, screen):
+        # Optionally Draw All Sensors / Radars
+        for radar in self.radars:
+            position = radar[0]
+            pygame.draw.line(screen, (0, 255, 0), self.center, position, 1)
+            pygame.draw.circle(screen, (0, 255, 0), position, 5)
+
+    def check_collision(self, game_map):
+        self.alive = True
+        for point in self.corners:
+            # If Any Corner Touches Border Color -> Crash
+            # Assumes Rectangle
+            if game_map.get_at((int(point[0]), int(point[1]))) == BORDER_COLOR:
+                self.alive = False
+                break
