@@ -1,2 +1,3 @@
 # AI-car-simulation
-## As a formula 1 fan I am most impressed by the ability of drivers to reach such a level of perfection and tight margins all over the track. I cant drive an F1 car (yet) but I can code one and then hand draw different maps on the F1 calendar and have my AI F1 racer go at it. Results on different tracks will be released soon.
+
+## As a Formula 1 fan, I'm in awe of the drivers' ability to achieve such precision and tight margins on the track. I can't drive an F1 car (yet), but I can code one! So, I'm hand-drawing different maps inspired by the F1 calendar and letting my AI F1 racer take the wheel. Stay tuned for the results on various tracks!
