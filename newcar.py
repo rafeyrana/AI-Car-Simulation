@@ -100,31 +100,5 @@ class Car:
         self.position[0] = max(self.position[0], 20)
         self.position[0] = min(self.position[0], WIDTH - 120)
 
-        # Increase Distance and Time
-        self.distance += self.speed
-        self.time += 1
-        
-        # Same For Y-Position
-        self.position[1] += math.sin(math.radians(360 - self.angle)) * self.speed
-        self.position[1] = max(self.position[1], 20)
-        self.position[1] = min(self.position[1], WIDTH - 120)
-
-        # Calculate New Center
-        self.center = [int(self.position[0]) + CAR_SIZE_X / 2, int(self.position[1]) + CAR_SIZE_Y / 2]
-
-        # Calculate Four Corners
-        # Length Is Half The Side
-        length = 0.5 * CAR_SIZE_X
-        left_top = [self.center[0] + math.cos(math.radians(360 - (self.angle + 30))) * length, self.center[1] + math.sin(math.radians(360 - (self.angle + 30))) * length]
-        right_top = [self.center[0] + math.cos(math.radians(360 - (self.angle + 150))) * length, self.center[1] + math.sin(math.radians(360 - (self.angle + 150))) * length]
-        left_bottom = [self.center[0] + math.cos(math.radians(360 - (self.angle + 210))) * length, self.center[1] + math.sin(math.radians(360 - (self.angle + 210))) * length]
-        right_bottom = [self.center[0] + math.cos(math.radians(360 - (self.angle + 330))) * length, self.center[1] + math.sin(math.radians(360 - (self.angle + 330))) * length]
-        self.corners = [left_top, right_top, left_bottom, right_bottom]
-
-        # Check Collisions And Clear Radars
-        self.check_collision(game_map)
-        self.radars.clear()
-
-        # From -90 To 120 With Step-Size 45 Check Radar
-        for d in range(-90, 120, 45):
-            self.check_radar(d, game_map)
+ 
+ 
