@@ -137,3 +137,20 @@ class Car:
             return_values[i] = int(radar[1] / 30)
 
         return return_values
+    def is_alive(self):
+        # Basic Alive Function
+        return self.alive
+
+    def get_reward(self):
+        # Calculate Reward (Maybe Change?)
+        # return self.distance / 50.0
+        return self.distance / (CAR_SIZE_X / 2)
+
+    def rotate_center(self, image, angle):
+        # Rotate The Rectangle
+        rectangle = image.get_rect()
+        rotated_image = pygame.transform.rotate(image, angle)
+        rotated_rectangle = rectangle.copy()
+        rotated_rectangle.center = rotated_image.get_rect().center
+        rotated_image = rotated_image.subsurface(rotated_rectangle).copy()
+        return rotated_image
