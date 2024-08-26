@@ -3,9 +3,7 @@ import math
 import sys
 import neat
 import pygame
-
-
-
+import pickle
 
 
 
@@ -177,7 +175,7 @@ def run_simulation(genomes, config):
     clock = pygame.time.Clock()
     generation_font = pygame.font.SysFont("Arial", 30)
     alive_font = pygame.font.SysFont("Arial", 20)
-    game_map = pygame.image.load('map2.png').convert() # Convert Speeds Up A Lot
+    game_map = pygame.image.load('map3.png').convert() # Convert Speeds Up A Lot
 
     global current_generation
     current_generation += 1
@@ -244,16 +242,51 @@ def run_simulation(genomes, config):
 
 
 
+def run_simulation_with_loaded_genome(genome, config):
+    net = neat.nn.FeedForwardNetwork.create(genome, config)
+    car = Car()
+    
+    # Set up PyGame and other necessary components
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+    clock = pygame.time.Clock()
+    game_map = pygame.image.load('map2.png').convert()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+
+        output = net.activate(car.get_data())
+        choice = output.index(max(output))
+        # Update car based on choice
+        
+        car.update(game_map)
+        
+        # Draw everything
+        screen.blit(game_map, (0, 0))
+        car.draw(screen)
+        
+        pygame.display.flip()
+        clock.tick(60)
+
+
+
 
 if __name__ == "__main__":
-    
-    # Load Config
     config_path = "./config.txt"
     config = neat.config.Config(neat.DefaultGenome,
                                 neat.DefaultReproduction,
                                 neat.DefaultSpeciesSet,
                                 neat.DefaultStagnation,
                                 config_path)
+
+    with open('best_genome.pkl', 'rb') as f:
+        loaded_genome = pickle.load(f)
+
+        # Run the simulation with the loaded genome
+        run_simulation_with_loaded_genome(loaded_genome, config)
+
 
     # Create Population And Add Reporters
     population = neat.Population(config)
@@ -263,3 +296,11 @@ if __name__ == "__main__":
     
     # Run Simulation For A Maximum of 1000 Generations
     population.run(run_simulation, 1000)
+
+
+    # After the population.run() call
+    best_genome = max(population.population.values(), key=lambda g: g.fitness)
+    with open('best_genome.pkl', 'wb') as f:
+        pickle.dump(best_genome, f)
+
+  
