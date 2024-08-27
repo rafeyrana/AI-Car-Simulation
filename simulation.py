@@ -258,7 +258,7 @@ def run_simulation_with_loaded_genome(genome, config):
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
     clock = pygame.time.Clock()
-    game_map = pygame.image.load('map2.png').convert()
+    game_map = pygame.image.load('map3.png').convert()
 
     while True:
         for event in pygame.event.get():

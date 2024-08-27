@@ -9,3 +9,7 @@
 The neural network uses a radar system input which then passes through a hidden layer to 4 output neurons which correspond to Left, Right, Speed Up, Slow Down.
 For each action we implement a reward system based on the fitness metric. After each generation we keep the top 2 fittest cars from the last generation and evolve them until they reach max number of generations or complete 10 laps without crashing. 
 
+
+
+## Watch the Demo
+[![Watch the demo](thumbnail.png)](https://youtu.be/sYxEbrP8nrE)
