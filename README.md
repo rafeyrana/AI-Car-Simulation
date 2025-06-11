@@ -1,4 +1,4 @@
-# F1-car-simulation
+# Teaching F1 Cars To Drive Around Handdrawn Tracks
 ### As a Formula 1 fan, I'm in awe of the drivers' ability to achieve such precision and tight margins on the track. I can't drive an F1 car (yet), but I can code one! So, I'm hand-drawing different maps inspired by the F1 calendar and letting my AI F1 racer take the wheel. 
 ### Implemented using NEAT (NeuroEvolution of Augmenting Topologies), NEAT is an algorithm for evolving artificial neural networks using: 
 - **Genetic Encoding**: Each neural network is encoded as a genome, which includes nodes and connections.
